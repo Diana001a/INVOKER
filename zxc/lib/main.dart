@@ -1,10 +1,9 @@
-
 import 'package:flutter/material.dart';
+
 
 void main() {
   runApp(MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
@@ -12,11 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-       home: HOMEpAGE(),
+      home: HOMEpAGE(),
     );
   }
-} 
-
+}
 
 class HOMEpAGE extends StatefulWidget {
   HOMEpAGE({Key key}) : super(key: key);
@@ -26,15 +24,23 @@ class HOMEpAGE extends StatefulWidget {
 }
 
 class _HOMEpAGEState extends State<HOMEpAGE> {
+  List<Widget> smsList = [];
+  void createSingleSms() {}
+
   @override
-  Widget build(BuildContext context) { 
-    Size size = MediaQuery.of(context).size; 
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-       bottomNavigationBar: Container(
+        body: SafeArea(child: ListView.builder(
+          itemBuilder: (context index) {
+            return smsList[index]; 
+          },
+              itemCount:smsList.length,
+        )),
+        bottomNavigationBar: SizedBox(
          width: size.width,
          height: 100.0,
-         color: Colors.blueAccent, 
          child: Row( 
            mainAxisAlignment: MainAxisAlignment.spaceAround,
            children: [
@@ -42,24 +48,16 @@ class _HOMEpAGEState extends State<HOMEpAGE> {
                width: size.width * 0.8,
                child: TextField(
                  decoration: InputDecoration(
-                   prefixIcon: Icon(Icons.anchor),  
+                   prefixIcon: Icon(Icons.anchor), 
                    labelText: "В ведите текст",
                      border: OutlineInputBorder(
-                       borderRadius: BorderRadius.all(Radius.circular(50)) 
-                     )
+                       borderRadius: BorderRadius.all(Radius.circular(50)),  
+                            
+                       
+                             ), 
+                       ),   
+                    ),
                  ),
-               ),
-             ),
-             IconButton(
-               icon: Icon(
-                 Icons.send,
-               ), 
-               onPressed: null,
-                 
-             )
-           ],
-         ),
-       ),
-    );
-  }
-}
+            ),
+        ),
+    );   
